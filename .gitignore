@@ -1,5 +1,6 @@
 .venv/
 .env
+.idea/
 db_libros/
 __pycache__/
 *.pyc
