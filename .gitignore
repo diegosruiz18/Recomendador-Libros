@@ -1,0 +1,6 @@
+.venv/
+.env
+db_libros/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
