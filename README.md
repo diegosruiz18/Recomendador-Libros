@@ -2,7 +2,7 @@
 
 El presente sistema de recomendación de libros está desarrollado utilizando LLM, base de datos vectorial y Gradio para la interfaz gráfica, los pasos para su desarrollo se presentan en los notebooks, desde la extracción, exploración y preprocesamiento de datos hasta la clasificación de texto, análisis de sentimientos y finalmente su despliegue.
 
-![](screenshot.JPG)
+![](screenshot.jpg)
 
 ### **📚 Demo del proyecto:** 
 Presiona clic aquí para usarlo: [:book: Recomendador de libros](https://huggingface.co/spaces/diegosruiz18/book-recommendations) 
@@ -27,7 +27,7 @@ Este sistema está diseñado para para recomendar libros en base a una **descrip
 - Ordena por tono emocional de las obras (tristeza, felicidad, suspenso, etc).
 - Visualiza y selecciona cualquier libro de la galería para ver más detalles.
 
-![](recomendacion.JPG)
+![](recomendacion.jpg)
 
 ## Desarrollo:
 
