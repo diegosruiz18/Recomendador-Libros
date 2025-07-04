@@ -5,7 +5,9 @@ El presente sistema de recomendación de libros está desarrollado utilizando LL
 ![](screenshot.jpg)
 
 ### **📚 Demo del proyecto:** 
-Presiona clic aquí para usarlo: [:book: Recomendador de libros](https://huggingface.co/spaces/diegosruiz18/book-recommendations) 
+Presiona clic aquí para usarlo: [:book: Recomendador de libros](https://huggingface.co/spaces/diegosruiz18/book-recommendations)  
+
+En caso de no ver la aplicación, hacer clic en el botón **"Restart Space"**.
 
 ## Objetivo:
 
