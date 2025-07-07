@@ -1,68 +1,70 @@
-# Recomendador de Libros Semántico
+# Semantic Book Recommender 
 
-El presente sistema de recomendación de libros está desarrollado utilizando LLM, base de datos vectorial y Gradio para la interfaz gráfica, los pasos para su desarrollo se presentan en los notebooks, desde la extracción, exploración y preprocesamiento de datos hasta la clasificación de texto, análisis de sentimientos y finalmente su despliegue.
+📌 Also available in [Spanish](README.es.md) | 📌 Disponible también en [Español](README.es.md)
 
-Desarrollado usando Python, Gradio, LangChain, ChromaDB, y OpenAIEmbeddings.
+This book recommendation system is developed using LLM, vector database, and Gradio for the user interface. The development steps are presented in the notebooks, from data extraction, exploration, and preprocessing to text classification, sentiment analysis, and finally deployment.
+
+Built using Python, Gradio, LangChain, ChromaDB and OpenAIEmbeddings.
 
 ![](screenshot.jpg)
 
-### **📚 Demo del proyecto:** 
-Presiona clic aquí para usarlo: [:book: Recomendador de libros](https://huggingface.co/spaces/diegosruiz18/book-recommendations)  
+### **📚 Project demo:** 
+Click here to use it: [:book: Book Recommender](https://huggingface.co/spaces/diegosruiz18/book-recommendations)  
 
-En caso de no ver la aplicación, hacer clic en el botón **"Restart Space"**.
+Click the **"Restart Space"** button if the application does not appear.
 
-## Objetivo:
+## Objective
 
-Este sistema está diseñado para recomendar libros en base a una **descripción personalizada que el usuario ingresa**, una vez realizado ello el sistema devuelve los títulos relevantes o relacionados al tema de interés del usuario. Adicionalmente, se pueden aplicar filtros por categoría y tono emocional de las obras.
+This system is designed to recommend books based on a **custom description that users enters**. Once submitted, the system returns relevant or related titles based on user's interest. Additionally, filters can be applied by category and emotional tone of the books.
 
-## Funcionamiento:
+## How it works?
 
-1. El usuario escribe una **descripción en español** sobre el tipo de libro de su interés.
-2. La descripción se traduce al inglés a fin de emparejar con la base de datos.
-3. Se convierte en un vector utilizando **OpenAIEmbeddings**.
-4. Se realiza una búsqueda semántica en la base de datos vectorial **ChromaDB**.
-5. Los resultados se filtran por **categoría** y **tono emocional**.
-6. Se muestran los libros recomendados en una galería con portada, título, autor y descripción (este último en español).
+1. First of all, user writes **description in Spanish** about the type of book that they are interested in.
+2. The description is translated into English in order to match the database.
+3. It is converted into a vector using **OpenAIEmbeddings**.
+4. A semantic search is performed on the **ChromaDB** vector database.
+5. Results are filtered by **category** and **emotional tone**.
+6. Recommended books are displayed in a gallery with cover image, title, author, and description (this last one in Spanish).
 
-### ¿Cómo usarlo?
+### How to use it?
 
-- Describe un libro o un tema que te interesa (ej. *una historia sobre la segunda guerra mundial*).
-- Filtra por categoría (ficción, no ficción, etc).
-- Ordena por tono emocional de las obras (tristeza, felicidad, suspenso, etc).
-- Visualiza y selecciona cualquier libro de la galería para ver más detalles.
+- Describe a book or topic that you are interested in (e.g. *a story about World War II*).
+- Filter by category (fiction, nonfiction, etc).
+- Sort by the emotional tone of the books (sadness, joy, suspense, etc).
+- View and select any book from the galery to see more details.
 
 ![](recomendacion.jpg)
 
-## Desarrollo:
+## Development
 
-### Preparación de datos
-- Fuente de datos: Kaggle
-- Extracción y limpieza de datos de texto en ```data_exploration.ipynb```
+### Data preparation
+- Data source: Kaggle
+- Text data extraction and cleaning in ```data_exploration.ipynb```
 
-### Búsqueda vectorial
-- Búsqueda semántica vectorial y construcción de la base de datos vectorial en ```vector_search.ipynb```
-- Se buscan los libros más similares a una consulta de lenguaje natural (por ejemplo, "un libro sobre la naturaleza y animales").
+### Vector search
+- Semantic vector search and vector database construction in ```vector_search.ipynb```
+- The system finds the most similar books to a natural language query (e.g., "a book about nature and animals").
 
-### Clasificación de texto
-- Clasificación de texto usando clasificación de disparo cero en ```text_classification.ipynb```
-- Se clasifican los libros como "ficción" o "no ficción", de tal manera que los usuarios puedan filtrar los libros.
+### Text classification
+- Text classification using zero-shoot classification in ```text_classification.ipynb```
+- Books are classified as "fiction" or "nonfiction", allowing users to filter them.
 
-### Análisis de sentimientos
-- Se utiliza LLM para extraer las emociones del texto en ```sentiment_analysis.ipynb```, 
-- Se ordenan los libros según su tono, por ejemplo: qué tan llenos de suspenso, alegres o tristes son los libros.
+### Sentiment analysis
+- LLM is used to extract emotions from the text in ```sentiment_analysis.ipynb```, 
+- Books are sorted by tone, such as how suspenseful, cheerful, or sad they are.
 
-### Aplicación web y despliegue
-- Creación de una aplicación web con Gradio para que los usuarios interactúen con el sistema en ```dashboard_gradio.py```.
-- Despliegue de la aplicación en Hugging Face.
+### Web Application and Deployment
+- Web application built in Gradio so that users can interact with the system in ```dashboard_gradio.py```.
+- Application deployed on Hugging Face.
 
-## Tecnologías utilizadas:
+## Technologies used
 
 - **Python** (PyCharm)
-- **Gradio** (interfaz de usuario)
-- **LangChain** y **Chroma** (base de datos vectorial)
-- **OpenAI Embeddings** (modelo `text-embedding-ada-002`)
-- **Traducción con GPT-3.5 turbo**
-- **Librerías:** pandas, numpy, matplotlib, seaborn
+- **Gradio** (user interface)
+- **LangChain** and **Chroma** (vector database)
+- **OpenAI Embeddings** (`text-embedding-ada-002` model)
+- **Translation with GPT-3.5 turbo**
+- **Libraries:** pandas, numpy, matplotlib, seaborn
 - **Hugging Face Spaces**
 
-Todas las dependencias se proporcionan en el archivo requirements.txt
+All dependencies are listed in requirements.txt file.
