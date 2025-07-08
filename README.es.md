@@ -4,9 +4,9 @@
 
 El presente sistema de recomendación de libros está desarrollado utilizando LLM, base de datos vectorial y Gradio para la interfaz gráfica, los pasos para su desarrollo se presentan en los notebooks, desde la extracción, exploración y preprocesamiento de datos hasta la clasificación de texto, análisis de sentimientos y finalmente su despliegue.
 
-Desarrollado usando Python, Gradio, LangChain, ChromaDB, y OpenAIEmbeddings.
+💻 Desarrollado usando Python, Gradio, LangChain, ChromaDB, y OpenAIEmbeddings.
 
-![](screenshot.jpg)
+![](application.jpg)
 
 ### **📚 Demo del proyecto:** 
 Presiona clic aquí para usarlo: [:book: Recomendador de libros](https://huggingface.co/spaces/diegosruiz18/book-recommendations)  
@@ -17,9 +17,30 @@ En caso de no ver la aplicación, hacer clic en el botón **"Restart Space"**.
 
 Este sistema está diseñado para recomendar libros en base a una **descripción personalizada que el usuario ingresa**, una vez realizado ello el sistema devuelve los títulos relevantes o relacionados al tema de interés del usuario. Adicionalmente, se pueden aplicar filtros por categoría y tono emocional de las obras.
 
+### 📌 Términos claves - traducción
+
+| Inglés                    | Español                        |
+|---------------------------|--------------------------------|
+| Book                      | Libro                          |
+| Recommendation            | Recomendación                  |
+| Semantic                  | Semántico                      |
+| Category                  | Categoría                      |
+| Emotional tone            | Tono emocional                 |
+| Find                      | Buscar                         |
+| All                       | Todos                          |
+| Fiction                   | Ficción                        |
+| Nonfiction                | No ficción                     |
+| Children's fiction        | Ficción infantil               |
+| Children's nonfiction     | No ficción infantil            |
+| Happy                     | Feliz                          |
+| Surprising                | Sorprendente                   |
+| Angry                     | Enojado                        |
+| Suspenseful               | Suspenso                       |
+| Sad                       | Triste                         |
+
 ## Funcionamiento:
 
-1. El usuario escribe una **descripción en español** sobre el tipo de libro de su interés.
+1. El usuario escribe una **descripción (puede ser en español o en inglés)** sobre el tipo de libro de su interés.
 2. La descripción se traduce al inglés a fin de emparejar con la base de datos.
 3. Se convierte en un vector utilizando **OpenAIEmbeddings**.
 4. Se realiza una búsqueda semántica en la base de datos vectorial **ChromaDB**.
@@ -30,10 +51,11 @@ Este sistema está diseñado para recomendar libros en base a una **descripción
 
 - Describe un libro o un tema que te interesa (ej. *una historia sobre la segunda guerra mundial*).
 - Filtra por categoría (ficción, no ficción, etc).
-- Ordena por tono emocional de las obras (tristeza, felicidad, suspenso, etc).
+- Selecciona tono emocional de las obras (tristeza, felicidad, suspenso, etc).
+- Hacer clic en el botón **"Find books"**, si no se ha seleccionado categoría ni tono emocional se mostrarán todas las obras.
 - Visualiza y selecciona cualquier libro de la galería para ver más detalles.
 
-![](recomendacion.jpg)
+![](recomendation.jpg)
 
 ## Desarrollo:
 

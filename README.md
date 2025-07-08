@@ -4,22 +4,22 @@
 
 This book recommendation system is developed using LLM, vector database, and Gradio for the user interface. The development steps are presented in the notebooks, from data extraction, exploration, and preprocessing to text classification, sentiment analysis, and finally deployment.
 
-Built using Python, Gradio, LangChain, ChromaDB and OpenAIEmbeddings.
+💻 Built using Python, Gradio, LangChain, ChromaDB and OpenAIEmbeddings.
 
-![](screenshot.jpg)
+![](application.jpg)
 
 ### **📚 Project demo:** 
 Click here to use it: [:book: Book Recommender](https://huggingface.co/spaces/diegosruiz18/book-recommendations)  
 
 Click the **"Restart Space"** button if the application does not appear.
 
-## Objective
+## Objective:
 
 This system is designed to recommend books based on a **custom description that users enters**. Once submitted, the system returns relevant or related titles based on user's interest. Additionally, filters can be applied by category and emotional tone of the books.
 
 ## How it works?
 
-1. First of all, user writes **description in Spanish** about the type of book that they are interested in.
+1. First of all, user writes a **description (it can be written in Spanish or English)** about the type of book that they are interested in.
 2. The description is translated into English in order to match the database.
 3. It is converted into a vector using **OpenAIEmbeddings**.
 4. A semantic search is performed on the **ChromaDB** vector database.
@@ -30,12 +30,13 @@ This system is designed to recommend books based on a **custom description that 
 
 - Describe a book or topic that you are interested in (e.g. *a story about World War II*).
 - Filter by category (fiction, nonfiction, etc).
-- Sort by the emotional tone of the books (sadness, joy, suspense, etc).
+- Select the emotional tone of the books (sadness, joy, suspense, etc).
+- Click the **"Find books"** button, if category or emotional tone are not selected all books will be displayed.
 - View and select any book from the galery to see more details.
 
-![](recomendacion.jpg)
+![](recomendation.jpg)
 
-## Development
+## Development:
 
 ### Data preparation
 - Data source: Kaggle
@@ -57,7 +58,7 @@ This system is designed to recommend books based on a **custom description that 
 - Web application built in Gradio so that users can interact with the system in ```dashboard_gradio.py```.
 - Application deployed on Hugging Face.
 
-## Technologies used
+## Technologies used:
 
 - **Python** (PyCharm)
 - **Gradio** (user interface)

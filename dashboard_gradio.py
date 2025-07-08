@@ -1,6 +1,9 @@
 #En este archivo creamos la interfaz de usuario para interactuar
 #con el recomendador de libros.
 
+#In this file the user interface is created to interact with
+#book recommender system, then the application will be deployed
+
 #Importando librerías
 import pandas as pd
 import numpy as np
@@ -24,7 +27,7 @@ load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 #Carga de datos
-libros = pd.read_csv("books_with_emotions_translated.csv")
+libros = pd.read_csv("data/books_with_emotions_translated.csv")
 
 #Obtener imágenes de mayor tamaño (portada de libros)
 libros["large_thumbnail"] = libros["thumbnail"] + "&fife=w800"
@@ -84,7 +87,7 @@ def recuperar_recomendaciones_semanticas(
     respuesta_libros = libros[libros["isbn13"].isin(lista_libros)].head(final_top_k) #guardando libros recomendados
 
     #Aplicar filtros basados en categoría
-    if categoria != "Todos":
+    if categoria != "All":
         #Se filtra según categoría elegida
         respuesta_libros = respuesta_libros[respuesta_libros["simple_categories"] == categoria].head(final_top_k)
     else:
@@ -92,15 +95,15 @@ def recuperar_recomendaciones_semanticas(
         respuesta_libros = respuesta_libros.head(final_top_k)
 
     #Ordenando según probabilidad de emoción
-    if tono == "Felicidad":
+    if tono == "Happy":
         respuesta_libros.sort_values(by="joy", ascending=False, inplace=True)
-    elif tono == "Sorpresa":
+    elif tono == "Surprising":
         respuesta_libros.sort_values(by="surprise", ascending=False, inplace=True)
-    elif tono == "Enojo":
+    elif tono == "Angry":
         respuesta_libros.sort_values(by="anger", ascending=False, inplace=True)
-    elif tono == "Suspenso":
+    elif tono == "Suspenseful":
         respuesta_libros.sort_values(by="fear", ascending=False, inplace=True)
-    elif tono == "Tristeza":
+    elif tono == "Sad":
         respuesta_libros.sort_values(by="sadness", ascending=False, inplace=True)
 
     #Retornando recomendaciones
@@ -122,7 +125,7 @@ def recomendar_libros(consulta: str, categoria: str, tono: str):
     #Recorriendo recomendaciones
     for _, row in recomendaciones.iterrows():
         #Descripciones
-        descripcion = row["spanish_description"] #descripción traducida al español
+        descripcion = row["description"]
         descripcion_dividida = descripcion.split()
         #Dividiendo las descripciones en palabras separadas, si contiene más de 30 palabras se corta
         descripcion_truncada = " ".join(descripcion_dividida[:30]) + "..."
@@ -130,22 +133,22 @@ def recomendar_libros(consulta: str, categoria: str, tono: str):
         #Autores
         autores_dividido = row["authors"].split(";")
         if len(autores_dividido) == 2: #si el libro tiene 2 autores
-            autores_str = f"{autores_dividido[0]} y {autores_dividido[1]}" #and
+            autores_str = f"{autores_dividido[0]} and {autores_dividido[1]}"
         elif len(autores_dividido) > 2: #si el libro tiene múltiples autores
-            autores_str = f"{', '.join(autores_dividido[:-1])}, y {autores_dividido[-1]}" #and
+            autores_str = f"{', '.join(autores_dividido[:-1])}, and {autores_dividido[-1]}"
         else:
             autores_str = row["authors"]
 
         #Combinando lo anterior
-        subtitulo_informacion = f"{row['title']} por {autores_str}: {descripcion_truncada}" #by
+        subtitulo_informacion = f"{row['title']} by {autores_str}: {descripcion_truncada}"
 
         #Asignar miniatura y subtitulo en una tupla y guardar en lista
         resultados.append((row["large_thumbnail"], subtitulo_informacion))
     return resultados #se retorna la lista
 
 #Crear el dashboard
-categorias = ["Todos"] + sorted(libros["simple_categories"].unique())
-tonos = ["Todos"] + ["Felicidad", "Sorpresa", "Enojo", "Suspenso", "Tristeza"]
+categorias = ["All"] + sorted(libros["simple_categories"].unique())
+tonos = ["All"] + ["Happy", "Surprising", "Angry", "Suspenseful", "Sad"]
 
 #Tema del dashboard
 with gr.Blocks(theme=gr.themes.Ocean()) as dashboard:
@@ -165,22 +168,22 @@ with gr.Blocks(theme=gr.themes.Ocean()) as dashboard:
     """)
 
     #Contenido
-    gr.Markdown("# Recomendador de libros semántico")
+    gr.Markdown("# Semantic Book Recommender")
 
     with gr.Row():
         #Input
-        consulta_usuario = gr.Textbox(label="Porfavor ingrese una descripción:",
-                                placeholder="Por ejemplo, una historia acerca del perdón.")
+        consulta_usuario = gr.Textbox(label="Please enter a description:", #Porfavor ingrese una descripción
+                                placeholder="E.g. a story about World War II") #Por ejemplo, una historia acerca de la segunda guerra mundial
         #Menú despegable
-        categoria_dropdown = gr.Dropdown(choices=categorias, label="Seleccione categoría:", value="Todos",
+        categoria_dropdown = gr.Dropdown(choices=categorias, label="Select category:", value="All", #Seleccione categoría
                                          allow_custom_value=False)
-        tono_dropdown = gr.Dropdown(choices=tonos, label="Seleccione tono emocional:", value="Todos",
+        tono_dropdown = gr.Dropdown(choices=tonos, label="Select emotional tone:", value="All", #Seleccione tono emocional
                                     allow_custom_value=False)
         #Botón
-        submit_button = gr.Button("Buscar libros")
+        submit_button = gr.Button("Find books") #Buscar libros
 
-    gr.Markdown("## Recomendaciones")
-    output = gr.Gallery(label="Libros recomendados", columns=8, rows=2)
+    gr.Markdown("## Recomendations")
+    output = gr.Gallery(label="Books recommended", columns=8, rows=2)
 
     #Al hacer click en el botón se ejecuta lo siguiente
     submit_button.click(fn=recomendar_libros,
